@@ -119,7 +119,6 @@
                     <div class="input-icon-wrapper">
                         <select name="role" class="form-select" required>
                             <option value="" hidden>Pilih Role</option>
-                            <option value="admin">Admin</option>
                             <option value="user">User</option>
                         </select>
                         <i class="bi bi-shield-lock"></i>

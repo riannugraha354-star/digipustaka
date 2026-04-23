@@ -1,6 +1,6 @@
 <?= $this->extend('layouts/main') ?>
 <?= $this->section('content') ?>
-// halaman untuk menampilkan form tambah buku
+
 <style>
     body { background: #e7f1ff; }
 
