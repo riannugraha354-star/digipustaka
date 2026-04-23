@@ -30,26 +30,34 @@ class Filters extends BaseFilters
 
     public array $required = [
         'before' => [
-            'forcehttps', 
-            'pagecache',  
+            'forcehttps',
+            'pagecache',
         ],
         'after' => [
-            'pagecache',   
-            'performance', 
-            'toolbar',     
+            'pagecache',
+            'performance',
+            'toolbar',
         ],
     ];
 
-   public array $globals = [
+    public array $globals = [
         'before' => [
             // Melindungi semua halaman kecuali yang ada di dalam array 'except'
             'auth' => [
-    'except' => [
-        '/', 'login', 'proses-login', 'logout', 'dashboard','restore','restore/auth','restore/from','restore/process',
-        'users/create', 'users/create/*', // Tambahkan asteris untuk jaga-jaga
-        'users/store'
-    ]
-]
+                'except' => [
+                    '/',
+                    'login',
+                    'proses-login',
+                    'logout',
+                    'restore',
+                    'restore/auth',
+                    'restore/form',
+                    'restore/process',
+                    'users/create',
+                    'users/create/*', // Tambahkan asteris untuk jaga-jaga
+                    'users/store'
+                ]
+            ]
         ],
         'after' => [
             // 'toolbar',

@@ -17,8 +17,8 @@ $routes->post('/proses-login', 'Auth::prosesLogin');
 $routes->get('/logout', 'Auth::logout');
 
 // --- Dashboard / Home ---
-$routes->get('/', 'Home::index');
-$routes->get('/dashboard', 'Home::index');
+$routes->get('/', 'Home::index', $authFilter);
+$routes->get('/dashboard', 'Home::index', $authFilter);
 
 // --- Modul Buku ---
 $routes->get('buku', 'Buku::index');
@@ -34,7 +34,7 @@ $routes->get('peminjaman', 'Peminjaman::index');
 $routes->get('peminjaman/create', 'Peminjaman::create');
 $routes->post('peminjaman/store', 'Peminjaman::store');
 $routes->get('peminjaman/print', 'Peminjaman::print');
-$routes->get('pinjam/(:num)', 'Peminjaman::pinjam/$1'); 
+$routes->get('pinjam/(:num)', 'Peminjaman::pinjam/$1');
 
 // Aksi Peminjaman (Konfirmasi & Pengajuan)
 $routes->get('peminjaman/ajukan_kembali/(:num)', 'Peminjaman::ajukan_kembali/$1');
@@ -68,3 +68,9 @@ $routes->post('/restore/auth', 'Restore::auth');
 $routes->get('/restore/form', 'Restore::form');
 $routes->post('/restore/process', 'Restore::process');
 
+$routes->get('/denda', 'Denda::index');
+$routes->post('/denda/bayar/(:num)', 'Denda::bayar/$1');
+
+$routes->get('/admin/denda', 'Denda::admin');
+$routes->get('/admin/denda/verifikasi/(:num)', 'Denda::verifikasi/$1');
+$routes->get('/admin/denda/tolak/(:num)', 'Denda::tolak/$1');

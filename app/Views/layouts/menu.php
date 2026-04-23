@@ -14,7 +14,7 @@
 
     <?php if (session()->get('role') == 'admin'): ?>
         <li class="nav-item">
-            <a class="nav-link <?= (url_is('users*')) ? 'active' : '' ?>" href="<?= base_url('/users') ?>">
+            <a class="nav-link <?= (url_is('users*') && !url_is('users/edit/*')) ? 'active' : '' ?>" href="<?= base_url('/users') ?>">
                 <i class="bi bi-people me-2"></i> Users
             </a>
         </li>
@@ -34,15 +34,23 @@
 
     <?php if (session()->get('role') == 'admin'): ?>
         <li class="nav-item">
-            <a class="nav-link <?= (url_is('peminjaman/denda')) ? 'active' : '' ?>" href="<?= base_url('peminjaman/denda') ?>">
-                <i class="bi bi-cash-stack me-2"></i> Data Denda
+            <a class="nav-link <?= (url_is('admin/denda*') || url_is('peminjaman/denda*')) ? 'active' : '' ?>" href="<?= base_url('/admin/denda') ?>">
+                <i class="bi bi-cash-stack me-2"></i> Verifikasi Denda
+            </a>
+        </li>
+    <?php endif; ?>
+
+    <?php if (session()->get('role') == 'user'): ?>
+        <li class="nav-item">
+            <a class="nav-link <?= (url_is('denda*')) ? 'active' : '' ?>" href="<?= base_url('/denda') ?>">
+                <i class="bi bi-wallet2 me-2"></i> Denda Saya
             </a>
         </li>
     <?php endif; ?>
 
     <li class="nav-item">
         <?php $idu = session('id_user'); ?>
-        <a class="nav-link <?= (url_is('users/edit/*')) ? 'active' : '' ?>" href="<?= base_url('users/edit/' . $idu) ?>">
+        <a class="nav-link <?= (url_is('users/edit/' . $idu)) ? 'active' : '' ?>" href="<?= base_url('users/edit/' . $idu) ?>">
             <i class="bi bi-gear me-2"></i> Setting
         </a>
     </li>
@@ -72,14 +80,16 @@
                 height="70" width="70" style="object-fit: cover;"
                 class="rounded-circle border border-2 border-primary shadow-sm" />
         <?php else: ?>
-            <img src="https://ui-avatars.com/api/?name=<?= session('nama') ?>&background=0d6efd&color=fff"
+            <img src="https://ui-avatars.com/api/?name=<?= urlencode(session('nama')) ?>&background=0d6efd&color=fff"
                 height="70" width="70" class="rounded-circle border border-2 border-primary shadow-sm" />
         <?php endif; ?>
     </div>
 
     <div class="px-3">
-        <h6 class="mb-0 fw-bold text-dark"><?= session('nama'); ?></h6>
-        <small class="text-muted text-uppercase" style="font-size: 0.7rem; letter-spacing: 1px;">
+        <h6 class="mb-0 fw-bold text-dark text-truncate" title="<?= session('nama'); ?>">
+            <?= session('nama'); ?>
+        </h6>
+        <small class="badge bg-light text-primary border text-uppercase" style="font-size: 0.65rem; letter-spacing: 1px;">
             <?= session('role'); ?>
         </small>
     </div>

@@ -5,18 +5,21 @@ namespace App\Controllers;
 use App\Models\PeminjamanModel;
 use App\Models\BukuModel;
 use App\Models\UsersModel;
+use App\Models\DendaModel;
 
 class Peminjaman extends BaseController
 {
     protected $peminjamanModel;
     protected $bukuModel;
     protected $usersModel;
+    protected $dendaModel;
 
     public function __construct()
     {
         $this->peminjamanModel = new PeminjamanModel();
         $this->bukuModel = new BukuModel();
         $this->usersModel = new UsersModel();
+        $this->dendaModel = new DendaModel();
     }
 
     public function index()
@@ -25,15 +28,24 @@ class Peminjaman extends BaseController
         $id_user = session()->get('id_user');
 
         $builder = $this->peminjamanModel
-            ->select('peminjaman.*, users.nama, buku.judul')
+            ->select('
+            peminjaman.*, 
+            users.nama, 
+            buku.judul,
+            denda.denda as jumlah_denda
+        ')
             ->join('users', 'users.id_user = peminjaman.id_user')
-            ->join('buku', 'buku.id_buku = peminjaman.id_buku');
+            ->join('buku', 'buku.id_buku = peminjaman.id_buku')
+            ->join('denda', 'denda.id_pinjam = peminjaman.id_pinjam', 'left'); // 🔥 penting
 
         if ($role != 'admin') {
             $builder->where('peminjaman.id_user', $id_user);
         }
 
-        $data['peminjaman'] = $builder->orderBy('id_pinjam', 'DESC')->findAll();
+        $data['peminjaman'] = $builder
+            ->orderBy('peminjaman.id_pinjam', 'DESC')
+            ->findAll();
+
         return view('peminjaman/index', $data);
     }
 
@@ -94,15 +106,58 @@ class Peminjaman extends BaseController
     public function konfirmasi_kembali($id)
     {
         if (session('role') != 'admin') return redirect()->to('/');
+
         $data = $this->peminjamanModel->find($id);
-        
-        if ($data) {
-            $this->peminjamanModel->update($id, ['status' => 'kembali']);
-            $buku = $this->bukuModel->find($data['id_buku']);
-            $this->bukuModel->update($data['id_buku'], ['stok' => $buku['stok'] + 1]);
-            return redirect()->back()->with('success', 'Buku diterima kembali.');
+
+        if (!$data) {
+            return redirect()->back()->with('error', 'Data tidak ditemukan.');
         }
-        return redirect()->back()->with('error', 'Gagal proses.');
+
+        $tanggalSekarang = date('Y-m-d');
+        $tanggalKembali = $data['tanggal_kembali'];
+
+        // cek apakah terlambat
+        if ($tanggalSekarang > $tanggalKembali) {
+
+            // hitung selisih hari keterlambatan
+            $terlambat = (strtotime($tanggalSekarang) - strtotime($tanggalKembali)) / (60 * 60 * 24);
+
+            // contoh: denda 1000 per hari
+            $dendaPerHari = 1000;
+            $totalDenda = $terlambat * $dendaPerHari;
+
+            // update status jadi terdenda
+            $this->peminjamanModel->update($id, [
+                'status' => 'terdenda'
+            ]);
+
+            // insert ke tabel denda
+            $this->dendaModel->insert([
+                'id_pinjam' => $id,
+                'denda'         => $totalDenda,
+                'metode_bayar'  => null,
+                'status'        => 'belum_bayar',
+                'bukti'         => null
+            ]);
+
+            $message = 'Buku terlambat dikembalikan. Denda ditambahkan.';
+        } else {
+
+            // jika tidak terlambat
+            $this->peminjamanModel->update($id, [
+                'status' => 'kembali'
+            ]);
+
+            $message = 'Buku diterima kembali.';
+        }
+
+        // kembalikan stok buku
+        $buku = $this->bukuModel->find($data['id_buku']);
+        $this->bukuModel->update($data['id_buku'], [
+            'stok' => $buku['stok'] + 1
+        ]);
+
+        return redirect()->back()->with('success', $message);
     }
 
     public function delete($id)
@@ -135,7 +190,7 @@ class Peminjaman extends BaseController
             'id_buku'         => $id_buku,
             'tanggal_pinjam'  => date('Y-m-d'),
             'tanggal_kembali' => date('Y-m-d', strtotime('+7 days')),
-            'status'          => 'pending' 
+            'status'          => 'pending'
         ]);
 
         return redirect()->to('/peminjaman')->with('success', 'Permintaan pinjam terkirim!');
@@ -147,7 +202,7 @@ class Peminjaman extends BaseController
         if (session('role') != 'admin') return redirect()->to('/');
 
         $tgl_sekarang = date('Y-m-d');
-        
+
         $data['peminjaman'] = $this->peminjamanModel
             ->select('peminjaman.*, users.nama, buku.judul')
             ->join('users', 'users.id_user = peminjaman.id_user')
