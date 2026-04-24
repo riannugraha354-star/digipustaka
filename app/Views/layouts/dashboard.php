@@ -2,7 +2,6 @@
 <?= $this->section('content') ?>
 
 <style>
-    /* Menggunakan font yang lebih modern jika tersedia */
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
 
     body { 
@@ -16,13 +15,11 @@
         transition: all 0.3s ease;
     }
 
-    /* Judul Dashboard */
     .title { 
         color: #2c3e50; 
         letter-spacing: -1px;
     }
 
-    /* Welcome Box dengan Glassmorphism effect */
     .welcome-box {
         background: linear-gradient(135deg, #007bff 0%, #00d2ff 100%);
         color: white; 
@@ -44,7 +41,6 @@
         border-radius: 50%;
     }
 
-    /* Card Custom yang lebih "Elegant" */
     .card-custom {
         border-radius: 20px; 
         border: none; 
@@ -53,15 +49,15 @@
         transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); 
         cursor: pointer; 
         position: relative;
+        /* Kunci tinggi agar semua card sejajar rata */
+        min-height: 115px; 
     }
 
     .card-custom:hover { 
         transform: translateY(-8px); 
         box-shadow: 0 12px 24px rgba(0,0,0,0.08);
-        background: #ffffff;
     }
 
-    /* Box Icon dengan Gradient */
     .icon-box {
         font-size: 26px; 
         width: 55px; 
@@ -74,7 +70,6 @@
         box-shadow: 0 4px 10px rgba(0,0,0,0.1);
     }
 
-    /* Warna Icon Gradient */
     .bg-users { background: linear-gradient(45deg, #6f42c1, #a389d4); } 
     .bg-buku { background: linear-gradient(45deg, #007bff, #66b5ff); } 
     .bg-peminjaman { background: linear-gradient(45deg, #00d2ff, #3a7bd5); }
@@ -92,21 +87,6 @@
         font-size: 1.1rem;
         color: #2d3436;
     }
-
-    /* Animasi masuk */
-    .row.g-4 .col-md-4 {
-        animation: fadeInUp 0.5s ease backwards;
-    }
-
-    @keyframes fadeInUp {
-        from { opacity: 0; transform: translateY(20px); }
-        to { opacity: 1; transform: translateY(0); }
-    }
-
-    /* Delay animasi tiap card */
-    .col-md-4:nth-child(1) { animation-delay: 0.1s; }
-    .col-md-4:nth-child(2) { animation-delay: 0.2s; }
-    .col-md-4:nth-child(3) { animation-delay: 0.3s; }
 
     @media (max-width: 768px) { 
         .content-wrapper { margin-left: 0; padding: 20px; } 
@@ -188,13 +168,16 @@
             </a>
         </div>
 
-        <?php if (session()->get('role') == 'admin') : ?>
         <div class="col-md-4">
-            <a href="<?= base_url('peminjaman/denda') ?>" class="card-link">
+            <?php 
+                $urlDenda = (session()->get('role') == 'admin') ? 'admin/denda' : 'denda'; 
+                $labelDenda = (session()->get('role') == 'admin') ? 'Verifikasi Denda' : 'Denda Saya';
+            ?>
+            <a href="<?= base_url($urlDenda) ?>" class="card-link">
                 <div class="card card-custom p-4 d-flex flex-row justify-content-between align-items-center">
                     <div>
                         <span class="d-block text-muted small text-uppercase fw-bold mb-1">Keuangan</span>
-                        <span class="card-text-main">Data Denda</span>
+                        <span class="card-text-main"><?= $labelDenda ?></span>
                     </div>
                     <div class="icon-box bg-denda">
                         <i class="bi bi-cash-stack"></i>
@@ -202,7 +185,6 @@
                 </div>
             </a>
         </div>
-        <?php endif; ?>
 
         <div class="col-md-4">
             <a href="<?= base_url('users/edit/' . session()->get('id_user')) ?>" class="card-link">

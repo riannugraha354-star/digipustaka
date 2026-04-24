@@ -74,3 +74,4 @@ $routes->post('/denda/bayar/(:num)', 'Denda::bayar/$1');
 $routes->get('/admin/denda', 'Denda::admin');
 $routes->get('/admin/denda/verifikasi/(:num)', 'Denda::verifikasi/$1');
 $routes->get('/admin/denda/tolak/(:num)', 'Denda::tolak/$1');
+$routes->get('denda/delete/(:num)', 'Denda::delete/$1');

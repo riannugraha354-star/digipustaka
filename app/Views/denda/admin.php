@@ -14,10 +14,10 @@
 
     /* Status Badge */
     .badge-status { padding: 6px 12px; border-radius: 8px; font-weight: 600; font-size: 11px; text-transform: uppercase; }
-    .bg-verif { background: #e6f7ff; color: #1890ff; } /* Menunggu */
-    .bg-lunas { background: #f6ffed; color: #52c41a; } /* Lunas */
-    .bg-tolak { background: #fff1f0; color: #ff4d4f; } /* Ditolak */
-    .bg-belum { background: #f5f5f5; color: #8c8c8c; } /* Belum Bayar */
+    .bg-verif { background: #e6f7ff; color: #1890ff; }
+    .bg-lunas { background: #f6ffed; color: #52c41a; }
+    .bg-tolak { background: #fff1f0; color: #ff4d4f; }
+    .bg-belum { background: #f5f5f5; color: #8c8c8c; }
 
     /* Image Preview */
     .img-admin-preview { width: 80px; height: 50px; object-fit: cover; border-radius: 8px; cursor: pointer; transition: 0.2s; border: 1px solid #eee; }
@@ -25,10 +25,13 @@
 
     /* Action Buttons */
     .btn-verif { background: #52c41a; color: white; border: none; padding: 5px 12px; border-radius: 8px; font-size: 13px; transition: 0.3s; }
-    .btn-verif:hover { background: #389e0d; color: white; box-shadow: 0 4px 10px rgba(82, 196, 26, 0.3); }
+    .btn-verif:hover { background: #389e0d; color: white; }
     
-    .btn-tolak { background: #ff4d4f; color: white; border: none; padding: 5px 12px; border-radius: 8px; font-size: 13px; transition: 0.3s; }
-    .btn-tolak:hover { background: #cf1322; color: white; box-shadow: 0 4px 10px rgba(255, 77, 79, 0.3); }
+    .btn-tolak { background: #fa8c16; color: white; border: none; padding: 5px 12px; border-radius: 8px; font-size: 13px; transition: 0.3s; }
+    .btn-tolak:hover { background: #d46b08; color: white; }
+
+    .btn-hapus { background: #ff4d4f; color: white; border: none; padding: 5px 12px; border-radius: 8px; font-size: 13px; transition: 0.3s; }
+    .btn-hapus:hover { background: #cf1322; color: white; box-shadow: 0 4px 10px rgba(255, 77, 79, 0.3); }
 
     @media (max-width: 768px) { .content-wrapper { margin-left: 0; padding: 20px; } }
 </style>
@@ -44,7 +47,9 @@
     </div>
 
     <?php if (session()->getFlashdata('success')): ?>
-        <div class="alert alert-success border-0 shadow-sm rounded-4 mb-4"><?= session()->getFlashdata('success') ?></div>
+        <div class="alert alert-success border-0 shadow-sm rounded-4 mb-4">
+            <i class="bi bi-check-circle-fill me-2"></i> <?= session()->getFlashdata('success') ?>
+        </div>
     <?php endif; ?>
 
     <div class="card card-custom">
@@ -57,7 +62,7 @@
                         <th>Nominal</th>
                         <th>Status</th>
                         <th>Bukti Transaksi</th>
-                        <th width="220">Konfirmasi</th>
+                        <th width="250">Konfirmasi & Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -91,22 +96,26 @@
                                     <?php endif; ?>
                                 </td>
                                 <td>
-                                    <?php if ($d['status'] == 'menunggu_verifikasi') : ?>
-                                        <div class="d-flex justify-content-center gap-2">
+                                    <div class="d-flex justify-content-center gap-2">
+                                        <?php if ($d['status'] == 'menunggu_verifikasi') : ?>
                                             <a href="<?= base_url('admin/denda/verifikasi/' . $d['id_denda']) ?>" 
-                                               class="btn btn-verif text-decoration-none shadow-sm"
+                                               class="btn btn-verif text-decoration-none"
                                                onclick="return confirm('Verifikasi pembayaran ini?')">
-                                                <i class="bi bi-check-lg"></i> Terima
+                                                <i class="bi bi-check-lg"></i>
                                             </a>
                                             <a href="<?= base_url('admin/denda/tolak/' . $d['id_denda']) ?>" 
-                                               class="btn btn-tolak text-decoration-none shadow-sm"
+                                               class="btn btn-tolak text-decoration-none"
                                                onclick="return confirm('Tolak bukti pembayaran ini?')">
-                                                <i class="bi bi-x-lg"></i> Tolak
+                                                <i class="bi bi-x-lg"></i>
                                             </a>
-                                        </div>
-                                    <?php else : ?>
-                                        <span class="text-muted small">- Selesai -</span>
-                                    <?php endif; ?>
+                                        <?php endif; ?>
+
+                                        <a href="<?= base_url('denda/delete/' . $d['id_denda']) ?>" 
+                                           class="btn btn-hapus text-decoration-none shadow-sm"
+                                           onclick="return confirm('Hapus denda ini secara permanen? Riwayat denda pada user juga akan hilang!')">
+                                            <i class="bi bi-trash"></i>
+                                        </a>
+                                    </div>
                                 </td>
                             </tr>
                         <?php endforeach; ?>
@@ -114,7 +123,7 @@
                         <tr>
                             <td colspan="6" class="text-center py-5">
                                 <i class="bi bi-inbox fs-1 d-block mb-2 text-muted"></i>
-                                <span class="text-muted">Tidak ada data denda yang masuk.</span>
+                                <span class="text-muted">Tidak ada data denda.</span>
                             </td>
                         </tr>
                     <?php endif; ?>

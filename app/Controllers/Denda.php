@@ -96,4 +96,18 @@ class Denda extends BaseController
 
         return redirect()->back()->with('error', 'Pembayaran ditolak.');
     }
+
+    public function delete($id)
+{
+    // Pastikan hanya admin yang bisa menghapus
+    if (session()->get('role') != 'admin') {
+        return redirect()->to('/')->with('error', 'Akses ditolak!');
+    }
+
+    // Hapus data denda berdasarkan ID
+    // Jika denda dihapus, otomatis data tersebut hilang dari list user
+    $this->dendaModel->delete($id);
+
+    return redirect()->back()->with('success', 'Data denda berhasil dihapus.');
+}
 }
