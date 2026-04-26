@@ -42,7 +42,7 @@
     <div class="dana-box shadow-sm">
         <div>
             <h5 class="mb-1 fw-bold"><i class="bi bi-wallet2 me-2"></i>Pembayaran via DANA</h5>
-            <p class="mb-0 opacity-75">Transfer ke: <strong>0812-3456-7890</strong> (A/N DigiPustaka)</p>
+            <p class="mb-0 opacity-75">Transfer ke: <strong>087871684300</strong> (Dana DigiPustaka)</p>
         </div>
         <div class="text-end">
             <i class="bi bi-qr-code-scan fs-1"></i>
