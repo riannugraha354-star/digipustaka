@@ -1,0 +1,24 @@
+1. Sistem Keamanan & Validasi Berlapis (Proactive Security)
+Intinya: Aplikasi bukan cuma buat simpan data, tapi bisa "mikir" buat nyegah pelanggaran.
+
+Penjelasan: "Aplikasi ini punya fitur Blokir Peminjaman Otomatis. Kalau user punya denda yang belum lunas, sistem secara otomatis mengunci fitur pinjam dan mengarahkan mereka ke halaman denda. Jadi, admin nggak perlu repot ngecek manual satu-satu siapa yang punya hutang."
+
+2. Otomatisasi Manajemen Waktu (Error-Free System)
+Intinya: Data tanggal dijamin akurat, nggak ada lagi kesalahan input manual.
+
+Penjelasan: "Sistem ini sudah Full-Automated dalam perhitungan tanggal. Begitu admin konfirmasi, sistem langsung menghitung tenggat waktu secara tepat. Ini menghilangkan risiko human error dan memastikan label 'Terlambat' muncul secara objektif berdasarkan sistem."
+
+3. Transparansi & User Experience (Informative Interface)
+Intinya: User nggak bakal bingung karena statusnya jelas.
+
+Penjelasan: "Antarmuka aplikasi ini sangat informatif. Saya menggunakan label status yang berbeda warna (Badge Status) untuk membedakan proses 'Menunggu', 'Dipinjam', hingga 'Selesai'. User bisa memantau riwayat mereka secara real-time tanpa perlu bertanya ke admin."
+
+4. Integritas Data yang Kuat (Data Integrity)
+Intinya: Struktur database rapi dan aman.
+
+Penjelasan: "Aplikasi ini menjaga Integritas Data dengan sangat baik. Penggunaan sistem ID yang unik memastikan setiap transaksi punya identitas sendiri yang tidak akan pernah tertukar, bahkan jika ada data yang dihapus. Ini sangat penting untuk akurasi laporan denda dan peminjaman."
+
+Tips Tambahan (Gaya Bicara):
+Kalau kamu ditanya, "Apa yang paling beda dari aplikasi lain?", kamu bisa jawab:
+
+"Kelebihan utamanya adalah alur kerjanya yang terintegrasi, Pak/Bu. Sistem denda dan peminjaman tidak berdiri sendiri, tapi saling mengunci demi ketertiban administrasi perpustakaan."
