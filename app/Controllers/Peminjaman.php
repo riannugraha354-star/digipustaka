@@ -49,91 +49,86 @@ class Peminjaman extends BaseController
         return view('peminjaman/index', $data);
     }
 
-    public function create()
-    {
-        $id_user = session()->get('id_user');
-        $role = session()->get('role');
+   public function create()
+{
+    // Ambil ID User yang sedang login dari session
+$id_user_login = session()->get('id_user'); 
+$role = session()->get('role');
 
-        // REVISI: Cek denda sebelum masuk halaman tambah
-        if ($role != 'admin') {
-            $punyaDenda = $this->dendaModel
-                ->join('peminjaman', 'peminjaman.id_pinjam = denda.id_pinjam')
-                ->where('peminjaman.id_user', $id_user)
-                ->whereIn('denda.status', ['belum_bayar', 'menunggu_verifikasi'])
-                ->first();
+if ($role != 'admin') {
+    // Kita cek langsung ke tabel denda, tapi kita saring berdasarkan user_id di tabel peminjaman
+    $cekDendaSaya = $this->dendaModel
+        ->select('denda.*, peminjaman.id_user') // Ambil data denda dan id_user peminjam
+        ->join('peminjaman', 'peminjaman.id_pinjam = denda.id_pinjam')
+        ->where('peminjaman.id_user', $id_user_login) // PASTIIN INI: Cek ID saya saja!
+        ->whereIn('denda.status', ['belum_bayar', 'menunggu_verifikasi'])
+        ->first();
 
-            if ($punyaDenda) {
-                return redirect()->to('/peminjaman')->with('error', 'buku tidak bisa di pinjam karna denda belum di bayar');
-            }
-        }
-
-        return view('peminjaman/create', [
-            'users' => $this->usersModel->findAll(),
-            'buku' => $this->bukuModel->where('stok >', 0)->findAll()
-        ]);
+    // Jika sistem menemukan denda yang "id_user"-nya adalah SAYA, baru blokir
+    if ($cekDendaSaya) {
+        return redirect()->to('/denda')->with('error', 'Akses ditolak! Kamu punya denda yang belum lunas.');
     }
+}
 
-    public function store()
-    {
-        $id_user = (session('role') == 'admin') ? $this->request->getPost('id_user') : session('id_user');
-        $id_buku = $this->request->getPost('id_buku');
+    // Jika aman (tidak ada denda), baru tampilkan halaman tambah pinjam
+    return view('peminjaman/create', [
+        'buku' => $this->bukuModel->findAll(),
+        // ... data lainnya
+    ]);
+}
+   public function store()
+{
+    $id_user_login = session()->get('id_user');
+    $role = session()->get('role');
 
-        // REVISI: Validasi denda saat menekan tombol simpan
-        if (session('role') != 'admin') {
-            $cekDenda = $this->dendaModel
-                ->join('peminjaman', 'peminjaman.id_pinjam = denda.id_pinjam')
-                ->where('peminjaman.id_user', $id_user)
-                ->whereIn('denda.status', ['belum_bayar', 'menunggu_verifikasi'])
-                ->first();
-
-            if ($cekDenda) {
-                return redirect()->to('/peminjaman')->with('error', 'buku tidak bisa di pinjam karna denda belum di bayar');
-            }
-        }
-
-        // Lanjut proses simpan peminjaman
-        $this->peminjamanModel->save([
-            'id_user'         => $id_user,
-            'id_buku'         => $id_buku,
-            'tanggal_pinjam'  => date('Y-m-d'),
-            'tanggal_kembali' => date('Y-m-d', strtotime('+7 days')),
-            'status'          => 'pending'
-        ]);
-
-        return redirect()->to('/peminjaman')->with('success', 'Permintaan pinjam berhasil dikirim!');
-    }
-
-    public function pinjam($id_buku)
-    {
-        $id_user = session()->get('id_user');
-
-        // REVISI: Validasi denda untuk tombol pinjam cepat di katalog
+    if ($role != 'admin') {
         $cekDenda = $this->dendaModel
             ->join('peminjaman', 'peminjaman.id_pinjam = denda.id_pinjam')
-            ->where('peminjaman.id_user', $id_user)
+            ->where('peminjaman.id_user', $id_user_login)
             ->whereIn('denda.status', ['belum_bayar', 'menunggu_verifikasi'])
             ->first();
 
         if ($cekDenda) {
-            return redirect()->to('/peminjaman')->with('error', 'buku tidak bisa di pinjam karna denda belum di bayar');
+            return redirect()->to('/denda')->with('error', 'Proses dibatalkan! Kamu masih punya denda aktif.');
         }
-
-        $dataBuku = $this->bukuModel->find($id_buku);
-        if (!$dataBuku || $dataBuku['stok'] <= 0) {
-            return redirect()->back()->with('error', 'Maaf, stok buku sedang habis!');
-        }
-
-        $this->peminjamanModel->save([
-            'id_user'         => $id_user,
-            'id_buku'         => $id_buku,
-            'tanggal_pinjam'  => date('Y-m-d'),
-            'tanggal_kembali' => date('Y-m-d', strtotime('+7 days')),
-            'status'          => 'pending'
-        ]);
-
-        return redirect()->to('/peminjaman')->with('success', 'Permintaan pinjam terkirim!');
     }
 
+    // ... lanjutkan proses simpan data ke database ...
+}
+
+   public function pinjam($id_buku)
+{
+    $id_user_login = session()->get('id_user');
+    $role = session()->get('role');
+
+    if ($role != 'admin') {
+        $cekDendaSaya = $this->dendaModel
+            ->join('peminjaman', 'peminjaman.id_pinjam = denda.id_pinjam')
+            ->where('peminjaman.id_user', $id_user_login)
+            ->whereIn('denda.status', ['belum_bayar', 'menunggu_verifikasi'])
+            ->first();
+
+        // JIKA PUNYA DENDA: Diusir ke halaman denda
+        if ($cekDendaSaya) {
+            return redirect()->to('/denda')->with('error', 'Selesaikan denda dulu ya! baru bisa pinjam buku lagi...');
+        }
+    }
+
+    // --- PENTING: KODE DI BAWAH INI JANGAN SAMPAI HILANG! ---
+    // Jika lolos pengecekan (tidak punya denda), jalankan proses pinjam di bawah:
+    
+    $data = [
+        'id_user'        => $id_user_login,
+        'id_buku'        => $id_buku,
+        'tanggal_pinjam' => date('Y-m-d'),
+        'status'         => 'pending' // Sesuaikan status awal aplikasi kamu
+    ];
+
+    $this->peminjamanModel->insert($data);
+
+    // Setelah simpan, harus ada REDIRECT supaya tidak putih polos
+    return redirect()->to('/peminjaman')->with('success', 'Permintaan pinjam terkirim!');
+}
     public function konfirmasi_pinjam($id)
     {
         if (session('role') != 'admin') return redirect()->to('/');

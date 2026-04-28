@@ -39,6 +39,18 @@
         <p class="text-muted">Silakan selesaikan pembayaran denda keterlambatan Anda.</p>
     </div>
 
+    <?php if (session()->getFlashdata('error')): ?>
+        <div class="alert alert-danger border-0 shadow-sm alert-dismissible fade show mb-4" style="border-radius: 15px; background-color: #f8d7da; color: #842029;">
+            <div class="d-flex align-items-center">
+                <i class="bi bi-exclamation-triangle-fill fs-5 me-3"></i>
+                <div>
+                    <strong class="d-block">Gagal Meminjam!</strong>
+                    <span><?= session()->getFlashdata('error') ?></span>
+                </div>
+            </div>
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+    <?php endif; ?>
     <div class="dana-box shadow-sm">
         <div>
             <h5 class="mb-1 fw-bold"><i class="bi bi-wallet2 me-2"></i>Pembayaran via DANA</h5>
