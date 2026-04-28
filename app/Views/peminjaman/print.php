@@ -14,7 +14,7 @@
 </head>
 <body>
     <div class="header-print">
-        <h2>LAPORAN PEMINJAMAN PERPUSTAKAAN</h2>
+        <h2>LAPORAN PEMINJAMAN BUKU</h2>
         <p>Di Aplikasi DigiPustaka</p>
     </div>
 
