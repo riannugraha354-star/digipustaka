@@ -3863,3 +3863,230 @@ DEBUG - 2026-04-28 08:18:58 --> Session: Class initialized using 'CodeIgniter\Se
 DEBUG - 2026-04-28 08:18:58 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
 DEBUG - 2026-04-28 08:19:02 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
 DEBUG - 2026-04-28 08:19:02 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-04-28 08:40:27 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-04-28 08:40:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-04-28 08:40:30 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-04-28 08:40:52 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-04-28 08:40:53 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-04-28 08:40:58 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-04-28 08:40:58 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-04-28 08:41:05 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-04-28 08:41:05 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-04-28 08:41:07 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-04-28 08:41:08 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2026-04-28 08:41:08 --> [DEPRECATED] strtotime(): Passing null to parameter #1 ($datetime) of type string is deprecated in APPPATH\Views\peminjaman\index.php on line 97.
+ 1 APPPATH\Views\peminjaman\index.php(97): strtotime(null)
+ 2 SYSTEMPATH\View\View.php(226): include('C:\\xampp\\htdocs\\digipustaka\\app\\Views\\peminjaman\\index.php')
+ 3 SYSTEMPATH\View\View.php(229): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1167): CodeIgniter\View\View->render('peminjaman/index', [], true)
+ 5 APPPATH\Controllers\Peminjaman.php(49): view('peminjaman/index', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Peminjaman->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Peminjaman))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+WARNING - 2026-04-28 08:41:08 --> [DEPRECATED] strtotime(): Passing null to parameter #1 ($datetime) of type string is deprecated in APPPATH\Views\peminjaman\index.php on line 97.
+ 1 APPPATH\Views\peminjaman\index.php(97): strtotime(null)
+ 2 SYSTEMPATH\View\View.php(226): include('C:\\xampp\\htdocs\\digipustaka\\app\\Views\\peminjaman\\index.php')
+ 3 SYSTEMPATH\View\View.php(229): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1167): CodeIgniter\View\View->render('peminjaman/index', [], true)
+ 5 APPPATH\Controllers\Peminjaman.php(49): view('peminjaman/index', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Peminjaman->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Peminjaman))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+WARNING - 2026-04-28 08:41:08 --> [DEPRECATED] strtotime(): Passing null to parameter #1 ($datetime) of type string is deprecated in APPPATH\Views\peminjaman\index.php on line 97.
+ 1 APPPATH\Views\peminjaman\index.php(97): strtotime(null)
+ 2 SYSTEMPATH\View\View.php(226): include('C:\\xampp\\htdocs\\digipustaka\\app\\Views\\peminjaman\\index.php')
+ 3 SYSTEMPATH\View\View.php(229): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1167): CodeIgniter\View\View->render('peminjaman/index', [], true)
+ 5 APPPATH\Controllers\Peminjaman.php(49): view('peminjaman/index', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Peminjaman->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Peminjaman))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+WARNING - 2026-04-28 08:41:08 --> [DEPRECATED] strtotime(): Passing null to parameter #1 ($datetime) of type string is deprecated in APPPATH\Views\peminjaman\index.php on line 97.
+ 1 APPPATH\Views\peminjaman\index.php(97): strtotime(null)
+ 2 SYSTEMPATH\View\View.php(226): include('C:\\xampp\\htdocs\\digipustaka\\app\\Views\\peminjaman\\index.php')
+ 3 SYSTEMPATH\View\View.php(229): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1167): CodeIgniter\View\View->render('peminjaman/index', [], true)
+ 5 APPPATH\Controllers\Peminjaman.php(49): view('peminjaman/index', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Peminjaman->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Peminjaman))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+DEBUG - 2026-04-28 08:41:08 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2026-04-28 08:41:08 --> [DEPRECATED] strtotime(): Passing null to parameter #1 ($datetime) of type string is deprecated in APPPATH\Views\peminjaman\index.php on line 97.
+ 1 APPPATH\Views\peminjaman\index.php(97): strtotime(null)
+ 2 SYSTEMPATH\View\View.php(226): include('C:\\xampp\\htdocs\\digipustaka\\app\\Views\\peminjaman\\index.php')
+ 3 SYSTEMPATH\View\View.php(229): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1167): CodeIgniter\View\View->render('peminjaman/index', [], true)
+ 5 APPPATH\Controllers\Peminjaman.php(49): view('peminjaman/index', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Peminjaman->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Peminjaman))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+WARNING - 2026-04-28 08:41:08 --> [DEPRECATED] strtotime(): Passing null to parameter #1 ($datetime) of type string is deprecated in APPPATH\Views\peminjaman\index.php on line 97.
+ 1 APPPATH\Views\peminjaman\index.php(97): strtotime(null)
+ 2 SYSTEMPATH\View\View.php(226): include('C:\\xampp\\htdocs\\digipustaka\\app\\Views\\peminjaman\\index.php')
+ 3 SYSTEMPATH\View\View.php(229): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1167): CodeIgniter\View\View->render('peminjaman/index', [], true)
+ 5 APPPATH\Controllers\Peminjaman.php(49): view('peminjaman/index', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Peminjaman->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Peminjaman))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+WARNING - 2026-04-28 08:41:08 --> [DEPRECATED] strtotime(): Passing null to parameter #1 ($datetime) of type string is deprecated in APPPATH\Views\peminjaman\index.php on line 97.
+ 1 APPPATH\Views\peminjaman\index.php(97): strtotime(null)
+ 2 SYSTEMPATH\View\View.php(226): include('C:\\xampp\\htdocs\\digipustaka\\app\\Views\\peminjaman\\index.php')
+ 3 SYSTEMPATH\View\View.php(229): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1167): CodeIgniter\View\View->render('peminjaman/index', [], true)
+ 5 APPPATH\Controllers\Peminjaman.php(49): view('peminjaman/index', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Peminjaman->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Peminjaman))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+WARNING - 2026-04-28 08:41:08 --> [DEPRECATED] strtotime(): Passing null to parameter #1 ($datetime) of type string is deprecated in APPPATH\Views\peminjaman\index.php on line 97.
+ 1 APPPATH\Views\peminjaman\index.php(97): strtotime(null)
+ 2 SYSTEMPATH\View\View.php(226): include('C:\\xampp\\htdocs\\digipustaka\\app\\Views\\peminjaman\\index.php')
+ 3 SYSTEMPATH\View\View.php(229): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1167): CodeIgniter\View\View->render('peminjaman/index', [], true)
+ 5 APPPATH\Controllers\Peminjaman.php(49): view('peminjaman/index', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Peminjaman->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Peminjaman))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+DEBUG - 2026-04-28 08:41:09 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-04-28 08:41:09 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-04-28 08:41:10 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-04-28 08:41:11 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-04-28 08:41:12 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-04-28 08:41:13 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-04-28 08:41:14 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-04-28 08:41:15 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-04-28 08:41:16 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-04-28 08:41:18 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2026-04-28 08:41:18 --> [DEPRECATED] strtotime(): Passing null to parameter #1 ($datetime) of type string is deprecated in APPPATH\Views\peminjaman\index.php on line 97.
+ 1 APPPATH\Views\peminjaman\index.php(97): strtotime(null)
+ 2 SYSTEMPATH\View\View.php(226): include('C:\\xampp\\htdocs\\digipustaka\\app\\Views\\peminjaman\\index.php')
+ 3 SYSTEMPATH\View\View.php(229): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1167): CodeIgniter\View\View->render('peminjaman/index', [], true)
+ 5 APPPATH\Controllers\Peminjaman.php(49): view('peminjaman/index', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Peminjaman->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Peminjaman))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+WARNING - 2026-04-28 08:41:18 --> [DEPRECATED] strtotime(): Passing null to parameter #1 ($datetime) of type string is deprecated in APPPATH\Views\peminjaman\index.php on line 97.
+ 1 APPPATH\Views\peminjaman\index.php(97): strtotime(null)
+ 2 SYSTEMPATH\View\View.php(226): include('C:\\xampp\\htdocs\\digipustaka\\app\\Views\\peminjaman\\index.php')
+ 3 SYSTEMPATH\View\View.php(229): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1167): CodeIgniter\View\View->render('peminjaman/index', [], true)
+ 5 APPPATH\Controllers\Peminjaman.php(49): view('peminjaman/index', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Peminjaman->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Peminjaman))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+WARNING - 2026-04-28 08:41:18 --> [DEPRECATED] strtotime(): Passing null to parameter #1 ($datetime) of type string is deprecated in APPPATH\Views\peminjaman\index.php on line 97.
+ 1 APPPATH\Views\peminjaman\index.php(97): strtotime(null)
+ 2 SYSTEMPATH\View\View.php(226): include('C:\\xampp\\htdocs\\digipustaka\\app\\Views\\peminjaman\\index.php')
+ 3 SYSTEMPATH\View\View.php(229): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1167): CodeIgniter\View\View->render('peminjaman/index', [], true)
+ 5 APPPATH\Controllers\Peminjaman.php(49): view('peminjaman/index', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Peminjaman->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Peminjaman))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+WARNING - 2026-04-28 08:41:18 --> [DEPRECATED] strtotime(): Passing null to parameter #1 ($datetime) of type string is deprecated in APPPATH\Views\peminjaman\index.php on line 97.
+ 1 APPPATH\Views\peminjaman\index.php(97): strtotime(null)
+ 2 SYSTEMPATH\View\View.php(226): include('C:\\xampp\\htdocs\\digipustaka\\app\\Views\\peminjaman\\index.php')
+ 3 SYSTEMPATH\View\View.php(229): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1167): CodeIgniter\View\View->render('peminjaman/index', [], true)
+ 5 APPPATH\Controllers\Peminjaman.php(49): view('peminjaman/index', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Peminjaman->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Peminjaman))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+DEBUG - 2026-04-28 08:41:19 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-04-28 08:41:20 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-04-28 08:41:21 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-04-28 08:41:22 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-04-28 08:41:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-04-28 08:42:11 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-04-28 08:42:20 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-04-28 08:42:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-04-28 08:42:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-04-28 08:42:24 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2026-04-28 08:42:24 --> [DEPRECATED] strtotime(): Passing null to parameter #1 ($datetime) of type string is deprecated in APPPATH\Views\peminjaman\index.php on line 97.
+ 1 APPPATH\Views\peminjaman\index.php(97): strtotime(null)
+ 2 SYSTEMPATH\View\View.php(226): include('C:\\xampp\\htdocs\\digipustaka\\app\\Views\\peminjaman\\index.php')
+ 3 SYSTEMPATH\View\View.php(229): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1167): CodeIgniter\View\View->render('peminjaman/index', [], true)
+ 5 APPPATH\Controllers\Peminjaman.php(49): view('peminjaman/index', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Peminjaman->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Peminjaman))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+WARNING - 2026-04-28 08:42:24 --> [DEPRECATED] strtotime(): Passing null to parameter #1 ($datetime) of type string is deprecated in APPPATH\Views\peminjaman\index.php on line 97.
+ 1 APPPATH\Views\peminjaman\index.php(97): strtotime(null)
+ 2 SYSTEMPATH\View\View.php(226): include('C:\\xampp\\htdocs\\digipustaka\\app\\Views\\peminjaman\\index.php')
+ 3 SYSTEMPATH\View\View.php(229): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1167): CodeIgniter\View\View->render('peminjaman/index', [], true)
+ 5 APPPATH\Controllers\Peminjaman.php(49): view('peminjaman/index', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Peminjaman->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Peminjaman))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+WARNING - 2026-04-28 08:42:24 --> [DEPRECATED] strtotime(): Passing null to parameter #1 ($datetime) of type string is deprecated in APPPATH\Views\peminjaman\index.php on line 97.
+ 1 APPPATH\Views\peminjaman\index.php(97): strtotime(null)
+ 2 SYSTEMPATH\View\View.php(226): include('C:\\xampp\\htdocs\\digipustaka\\app\\Views\\peminjaman\\index.php')
+ 3 SYSTEMPATH\View\View.php(229): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1167): CodeIgniter\View\View->render('peminjaman/index', [], true)
+ 5 APPPATH\Controllers\Peminjaman.php(49): view('peminjaman/index', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Peminjaman->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Peminjaman))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+WARNING - 2026-04-28 08:42:24 --> [DEPRECATED] strtotime(): Passing null to parameter #1 ($datetime) of type string is deprecated in APPPATH\Views\peminjaman\index.php on line 97.
+ 1 APPPATH\Views\peminjaman\index.php(97): strtotime(null)
+ 2 SYSTEMPATH\View\View.php(226): include('C:\\xampp\\htdocs\\digipustaka\\app\\Views\\peminjaman\\index.php')
+ 3 SYSTEMPATH\View\View.php(229): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1167): CodeIgniter\View\View->render('peminjaman/index', [], true)
+ 5 APPPATH\Controllers\Peminjaman.php(49): view('peminjaman/index', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Peminjaman->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Peminjaman))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+DEBUG - 2026-04-28 08:42:24 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-04-28 08:42:25 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-04-28 08:42:26 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
