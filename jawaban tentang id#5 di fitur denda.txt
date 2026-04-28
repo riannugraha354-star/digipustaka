@@ -1,0 +1,1 @@
+"Izin Pak/Bu, ID ini ibarat Nomor Antrean atau Nomor Induk. Meskipun orang yang punya nomor 5 sudah keluar atau dihapus dari sistem, nomor 5 itu tidak akan diberikan ke orang baru untuk menghindari tertukarnya data (identitas). Jadi sistem akan selalu memberikan nomor baru yang unik supaya data tetap rapi dan tidak bentrok dengan riwayat yang lama."

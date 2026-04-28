@@ -96,11 +96,13 @@ if ($role != 'admin') {
     // ... lanjutkan proses simpan data ke database ...
 }
 
-   public function pinjam($id_buku)
+ public function pinjam($id_buku)
 {
     $id_user_login = session()->get('id_user');
     $role = session()->get('role');
 
+    // --- STEP 1: SATPAM (Pengecekan Denda) ---
+    // Jangan biarkan user lanjut ke bawah kalau dia punya denda
     if ($role != 'admin') {
         $cekDendaSaya = $this->dendaModel
             ->join('peminjaman', 'peminjaman.id_pinjam = denda.id_pinjam')
@@ -108,41 +110,46 @@ if ($role != 'admin') {
             ->whereIn('denda.status', ['belum_bayar', 'menunggu_verifikasi'])
             ->first();
 
-        // JIKA PUNYA DENDA: Diusir ke halaman denda
         if ($cekDendaSaya) {
-            return redirect()->to('/denda')->with('error', 'Selesaikan denda dulu ya! baru bisa pinjam buku lagi...');
+            // Jika ada denda, lempar ke halaman denda & hentikan proses (return)
+            return redirect()->to('/denda')->with('error', 'buku tidak bisa di pinjam karna denda belum di bayar');
         }
     }
 
-    // --- PENTING: KODE DI BAWAH INI JANGAN SAMPAI HILANG! ---
-    // Jika lolos pengecekan (tidak punya denda), jalankan proses pinjam di bawah:
-    
+    // --- STEP 2: PROSES (Jika Lolos Cek Denda) ---
+    $tgl_pinjam = date('Y-m-d');
+    $tgl_kembali_estimasi = date('Y-m-d', strtotime('+7 days'));
+
     $data = [
-        'id_user'        => $id_user_login,
-        'id_buku'        => $id_buku,
-        'tanggal_pinjam' => date('Y-m-d'),
-        'status'         => 'pending' // Sesuaikan status awal aplikasi kamu
+        'id_user'         => $id_user_login,
+        'id_buku'         => $id_buku,
+        'tanggal_pinjam'  => $tgl_pinjam,
+        'tanggal_kembali' => $tgl_kembali_estimasi, // Fix agar tidak 1970
+        'status'          => 'pending'
     ];
 
     $this->peminjamanModel->insert($data);
 
-    // Setelah simpan, harus ada REDIRECT supaya tidak putih polos
+    // Kirim notif sukses hijau
     return redirect()->to('/peminjaman')->with('success', 'Permintaan pinjam terkirim!');
 }
-    public function konfirmasi_pinjam($id)
-    {
-        if (session('role') != 'admin') return redirect()->to('/');
-        $data = $this->peminjamanModel->find($id);
-        $buku = $this->bukuModel->find($data['id_buku']);
+   public function konfirmasi_pinjam($id)
+{
+    // 1. Tentukan tanggal hari ini sebagai awal pinjam
+    $tgl_pinjam = date('Y-m-d');
+    
+    // 2. Tambahkan durasi pinjam (misal 7 hari ke depan)
+    $tgl_kembali = date('Y-m-d', strtotime('+7 days', strtotime($tgl_pinjam)));
 
-        if ($buku['stok'] > 0) {
-            $this->peminjamanModel->update($id, ['status' => 'dipinjam']);
-            $this->bukuModel->update($data['id_buku'], ['stok' => $buku['stok'] - 1]);
-            return redirect()->back()->with('success', 'Peminjaman disetujui!');
-        }
-        return redirect()->back()->with('error', 'Stok habis!');
-    }
+    // 3. Update database dengan status 'dipinjam' dan tanggal kembali yang benar
+    $this->peminjamanModel->update($id, [
+        'status'          => 'dipinjam',
+        'tanggal_pinjam'  => $tgl_pinjam,
+        'tanggal_kembali' => $tgl_kembali // INI HARUS ADA BIAR GAK 1970
+    ]);
 
+    return redirect()->to('/peminjaman')->with('success', 'Peminjaman disetujui!');
+}
     public function ajukan_kembali($id)
     {
         $this->peminjamanModel->update($id, ['status' => 'menunggu_kembali']);
