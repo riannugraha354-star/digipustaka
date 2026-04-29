@@ -2,119 +2,192 @@
 <?= $this->section('content') ?>
 
 <style>
-    /* Sinkronisasi Tema Dashboard */
-    body { background: #f0f5fa; font-family: 'Inter', sans-serif; }
-    .content-wrapper { margin-left: 240px; padding: 40px; transition: all 0.3s ease; }
+    /* Sinkronisasi Tema DigiPustaka */
+    body { background-color: #f4f7fa; font-family: 'Inter', sans-serif; }
+    .content-wrapper { margin-left: 240px; padding: 40px; transition: 0.3s; }
 
-    .card-custom { border-radius: 20px; border: none; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05); background: white; overflow: hidden; }
-    
-    /* Info Box DANA */
+    /* Header Styling */
+    .page-header h2 { color: #1a3a5f; font-weight: 800; display: flex; align-items: center; gap: 12px; }
+    .page-header p { color: #6c757d; font-size: 14px; margin-left: 45px; }
+
+    /* Info Box DANA - Modern Gradient */
     .dana-box {
-        background: linear-gradient(135deg, #0085ff 0%, #005bc4 100%);
+        background: linear-gradient(135deg, #007bff 0%, #00d4ff 100%);
         color: white;
-        border-radius: 15px;
-        padding: 20px;
+        border-radius: 20px;
+        padding: 25px;
         margin-bottom: 30px;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
+        position: relative;
+        overflow: hidden;
+        border: none;
+    }
+    .dana-box::after {
+        content: ''; position: absolute; top: -20px; right: -20px;
+        width: 150px; height: 150px; background: rgba(255,255,255,0.1);
+        border-radius: 50%;
     }
 
-    /* Badge Status */
-    .badge-status { padding: 6px 12px; border-radius: 8px; font-weight: 600; font-size: 11px; text-transform: uppercase; }
-    .bg-pending { background: #fff7e6; color: #fa8c16; }
-    .bg-success-light { background: #f6ffed; color: #52c41a; }
-    .bg-danger-light { background: #fff1f0; color: #ff4d4f; }
+    /* Card & Table Styling */
+    .card-custom {
+        border-radius: 25px;
+        border: none;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+        background: white;
+        overflow: hidden;
+    }
+    .table thead th {
+        background-color: #fcfdfe;
+        color: #8e9aaf;
+        font-size: 11px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        font-weight: 700;
+        border-top: none;
+        padding: 20px;
+    }
+    .table tbody td { padding: 20px; vertical-align: middle; color: #495057; border-color: #f1f4f8; }
 
-    .table td { vertical-align: middle; padding: 15px; }
-    .img-bukti { width: 60px; height: 60px; object-fit: cover; border-radius: 10px; cursor: pointer; transition: 0.3s; }
-    .img-bukti:hover { transform: scale(1.1); }
+    /* Badge Status Modern */
+    .badge-status {
+        padding: 6px 14px;
+        border-radius: 10px;
+        font-weight: 700;
+        font-size: 10px;
+        text-transform: uppercase;
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+    }
+    .bg-pending { background: #fff7e6; color: #fa8c16; border: 1px solid #ffe7ba; }
+    .bg-success-light { background: #e6fffa; color: #047857; border: 1px solid #b2f5ea; }
+    .bg-danger-light { background: #fff5f5; color: #c53030; border: 1px solid #fed7d7; }
 
-    @media (max-width: 768px) { .content-wrapper { margin-left: 0; padding: 20px; } }
+    /* Upload Styling */
+    .btn-upload {
+        background: #007bff;
+        color: white;
+        border-radius: 10px;
+        padding: 8px 15px;
+        font-weight: 600;
+        transition: 0.3s;
+        border: none;
+    }
+    .btn-upload:hover { background: #0056b3; transform: translateY(-2px); }
+    
+    .form-control-upload {
+        border-radius: 10px;
+        border: 1px dashed #ced4da;
+        background: #f8f9fa;
+        font-size: 12px;
+    }
+
+    .img-bukti { 
+        width: 50px; height: 50px; 
+        object-fit: cover; 
+        border-radius: 12px; 
+        border: 2px solid #fff;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        transition: 0.3s;
+    }
+    .img-bukti:hover { transform: scale(1.2) rotate(3deg); }
+
+    @media (max-width: 992px) { .content-wrapper { margin-left: 0; padding: 20px; } }
 </style>
 
 <div class="content-wrapper">
-    <div class="mb-4">
-        <h2 class="fw-bold text-dark mb-1"><i class="bi bi-cash-stack text-primary me-2"></i>Tagihan Denda</h2>
-        <p class="text-muted">Silakan selesaikan pembayaran denda keterlambatan Anda.</p>
+    <div class="page-header mb-4">
+        <h2><i class="bi bi-cash-stack text-primary"></i> Tagihan Denda</h2>
+        <p>Lihat riwayat dan selesaikan pembayaran denda Anda.</p>
     </div>
 
     <?php if (session()->getFlashdata('error')): ?>
-        <div class="alert alert-danger border-0 shadow-sm alert-dismissible fade show mb-4" style="border-radius: 15px; background-color: #f8d7da; color: #842029;">
+        <div class="alert alert-danger border-0 shadow-sm alert-dismissible fade show mb-4" style="border-radius: 18px;">
             <div class="d-flex align-items-center">
-                <i class="bi bi-exclamation-triangle-fill fs-5 me-3"></i>
-                <div>
-                    <strong class="d-block">Gagal Meminjam!</strong>
-                    <span><?= session()->getFlashdata('error') ?></span>
-                </div>
+                <i class="bi bi-exclamation-circle-fill fs-4 me-3"></i>
+                <div><?= session()->getFlashdata('error') ?></div>
             </div>
             <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
         </div>
     <?php endif; ?>
-    <div class="dana-box shadow-sm">
-        <div>
-            <h5 class="mb-1 fw-bold"><i class="bi bi-wallet2 me-2"></i>Pembayaran via DANA</h5>
-            <p class="mb-0 opacity-75">Transfer ke: <strong>087871684300</strong> (Dana DigiPustaka)</p>
-        </div>
-        <div class="text-end">
-            <i class="bi bi-qr-code-scan fs-1"></i>
-        </div>
-    </div>
 
     <?php if (session()->getFlashdata('success')): ?>
-        <div class="alert alert-success border-0 rounded-4 shadow-sm mb-4"><?= session()->getFlashdata('success') ?></div>
+        <div class="alert alert-success border-0 shadow-sm alert-dismissible fade show mb-4" style="border-radius: 18px;">
+            <div class="d-flex align-items-center">
+                <i class="bi bi-check-circle-fill fs-4 me-3"></i>
+                <div><?= session()->getFlashdata('success') ?></div>
+            </div>
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
     <?php endif; ?>
+
+    <div class="dana-box shadow-sm d-flex align-items-center justify-content-between">
+        <div>
+            <span class="badge bg-white text-primary fw-bold mb-2 px-3 py-2 rounded-pill shadow-sm" style="font-size: 10px;">METODE PEMBAYARAN</span>
+            <h4 class="mb-1 fw-bold">Transfer via DANA</h4>
+            <p class="mb-0 opacity-100 fw-medium">Nomor Tujuan: <span class="bg-white text-dark px-2 py-1 rounded mx-1">087871684300</span> a/n DigiPustaka</p>
+        </div>
+        <div class="text-end d-none d-md-block">
+            <i class="bi bi-qr-code-scan" style="font-size: 4rem; opacity: 0.8;"></i>
+        </div>
+    </div>
 
     <div class="card card-custom">
         <div class="table-responsive">
             <table class="table table-hover mb-0">
-                <thead class="bg-light">
+                <thead>
                     <tr>
-                        <th class="px-4 py-3" width="80">ID</th>
-                        <th class="py-3">Nominal Denda</th>
-                        <th class="py-3 text-center">Status</th>
-                        <th class="py-3 text-center">Bukti Bayar</th>
-                        <th class="py-3 text-center" width="250">Aksi Pembayaran</th>
+                        <th width="100">Invoice</th>
+                        <th>Nominal</th>
+                        <th class="text-center">Status</th>
+                        <th class="text-center">Bukti Bayar</th>
+                        <th class="text-center" width="300">Aksi Pembayaran</th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php if (!empty($denda)): ?>
                         <?php foreach ($denda as $d) : ?>
                             <tr>
-                                <td class="px-4 fw-bold text-muted">#<?= $d['id_denda'] ?></td>
+                                <td class="fw-bold text-primary">#DEN-<?= $d['id_denda'] ?></td>
                                 <td>
-                                    <span class="fw-bold text-dark">Rp <?= number_format($d['denda'], 0, ',', '.') ?></span>
+                                    <div class="d-flex flex-column">
+                                        <span class="fw-bold text-dark fs-5">Rp <?= number_format($d['denda'], 0, ',', '.') ?></span>
+                                        <small class="text-muted" style="font-size: 10px;">Denda Keterlambatan</small>
+                                    </div>
                                 </td>
                                 <td class="text-center">
                                     <?php 
                                         $statusClass = 'bg-pending';
-                                        $statusText = $d['status'];
-                                        if($d['status'] == 'lunas') $statusClass = 'bg-success-light';
-                                        if($d['status'] == 'ditolak') $statusClass = 'bg-danger-light';
+                                        $icon = 'bi-clock-history';
+                                        if($d['status'] == 'lunas') { $statusClass = 'bg-success-light'; $icon = 'bi-check-circle'; }
+                                        if($d['status'] == 'ditolak') { $statusClass = 'bg-danger-light'; $icon = 'bi-x-circle'; }
                                     ?>
-                                    <span class="badge-status <?= $statusClass ?>"><?= str_replace('_', ' ', $statusText) ?></span>
+                                    <span class="badge-status <?= $statusClass ?>">
+                                        <i class="bi <?= $icon ?>"></i> <?= str_replace('_', ' ', $d['status']) ?>
+                                    </span>
                                 </td>
                                 <td class="text-center">
                                     <?php if ($d['bukti']) : ?>
                                         <a href="<?= base_url('uploads/bukti/' . $d['bukti']) ?>" target="_blank">
-                                            <img src="<?= base_url('uploads/bukti/' . $d['bukti']) ?>" class="img-bukti border shadow-sm">
+                                            <img src="<?= base_url('uploads/bukti/' . $d['bukti']) ?>" class="img-bukti">
                                         </a>
                                     <?php else : ?>
-                                        <span class="text-muted small italic">Belum upload</span>
+                                        <span class="text-muted small"><i class="bi bi-image"></i> Kosong</span>
                                     <?php endif; ?>
                                 </td>
                                 <td>
                                     <?php if ($d['status'] == 'belum_bayar' || $d['status'] == 'ditolak') : ?>
-                                        <form action="<?= base_url('denda/bayar/' . $d['id_denda']) ?>" method="post" enctype="multipart/form-data" class="d-flex gap-2">
-                                            <input type="hidden" name="metode_bayar" value="Transfer">
-                                            <input type="file" name="bukti" class="form-control form-control-sm" required>
-                                            <button type="submit" class="btn btn-primary btn-sm shadow-sm">
-                                                <i class="bi bi-upload"></i>
-                                            </button>
+                                        <form action="<?= base_url('denda/bayar/' . $d['id_denda']) ?>" method="post" enctype="multipart/form-data">
+                                            <div class="input-group">
+                                                <input type="hidden" name="metode_bayar" value="Transfer">
+                                                <input type="file" name="bukti" class="form-control form-control-sm form-control-upload" required>
+                                                <button type="submit" class="btn btn-upload shadow-sm">
+                                                    <i class="bi bi-send-fill"></i>
+                                                </button>
+                                            </div>
                                         </form>
                                     <?php else : ?>
-                                        <div class="text-center text-muted small">
-                                            <i class="bi bi-check-all text-success"></i> Sudah diproses
+                                        <div class="text-center py-2 px-3 rounded-pill bg-light text-muted" style="font-size: 12px;">
+                                            <i class="bi bi-shield-check text-success me-1"></i> Pembayaran Terverifikasi
                                         </div>
                                     <?php endif; ?>
                                 </td>
@@ -122,9 +195,12 @@
                         <?php endforeach; ?>
                     <?php else: ?>
                         <tr>
-                            <td colspan="5" class="text-center py-5 text-muted">
-                                <i class="bi bi-emoji-smile fs-2 d-block mb-2"></i>
-                                Kamu tidak memiliki tunggakan denda.
+                            <td colspan="5" class="text-center py-5">
+                                <div class="py-4">
+                                    <i class="bi bi-emoji-smile fs-1 text-primary opacity-25 d-block mb-3"></i>
+                                    <h5 class="text-dark fw-bold mb-1">Wah, Kamu Hebat!</h5>
+                                    <p class="text-muted small">Tidak ada tunggakan denda yang ditemukan.</p>
+                                </div>
                             </td>
                         </tr>
                     <?php endif; ?>
